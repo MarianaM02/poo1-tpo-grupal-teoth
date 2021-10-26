@@ -1,6 +1,6 @@
 package ar.edu.uno.geometria;
 
-public class Segmento implements Desplazable {
+public class Segmento implements Desplazable, Comparable<Segmento> {
 
 	private Punto punto1;
 	private Punto punto2;
@@ -52,6 +52,11 @@ public class Segmento implements Desplazable {
 	@Override
 	public String toString() {
 		return "[punto1=" + punto1 + ", punto2=" + punto2 + "]";
+	}
+
+	@Override
+	public int compareTo(Segmento o) {
+		return this.calcularLongitud().compareTo(o.calcularLongitud());
 	}
 
 }
