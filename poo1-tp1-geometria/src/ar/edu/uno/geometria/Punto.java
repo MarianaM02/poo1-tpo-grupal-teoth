@@ -12,22 +12,6 @@ public class Punto implements Desplazable{
 		this.y = y;
 	}
 
-	public Double getX() {
-		return x;
-	}
-
-	public void setX(Double x) {
-		this.x = x;
-	}
-
-	public Double getY() {
-		return y;
-	}
-
-	public void setY(Double y) {
-		this.y = y;
-	}
-
 	public boolean estaSobreEjeY() {
 		return x.compareTo(0.0) == 0;
 	}
@@ -46,6 +30,22 @@ public class Punto implements Desplazable{
 		return Math.hypot(diferenciaEnX, diferenciaEnY);
 	}
 
+	public Double getX() {
+		return x;
+	}
+
+	public void setX(Double x) {
+		this.x = x;
+	}
+
+	public Double getY() {
+		return y;
+	}
+
+	public void setY(Double y) {
+		this.y = y;
+	}
+	
 	@Override
 	public void desplazarEnX(Double distancia) {
 		this.setX(this.getX() + distancia);
@@ -54,11 +54,6 @@ public class Punto implements Desplazable{
 	@Override
 	public void desplazarEnY(Double distancia) {
 		this.setY(this.getY() + distancia);
-	}
-
-	@Override
-	public String toString() {
-		return "[x=" + x + ", y=" + y + "]";
 	}
 
 	@Override
@@ -78,4 +73,8 @@ public class Punto implements Desplazable{
 		return Objects.equals(x, other.x) && Objects.equals(y, other.y);
 	}
 
+	@Override
+	public String toString() {
+		return x + ","+ y;
+	}
 }

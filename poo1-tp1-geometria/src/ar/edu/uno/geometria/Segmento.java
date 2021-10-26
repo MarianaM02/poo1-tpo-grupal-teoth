@@ -6,13 +6,11 @@ public class Segmento implements Desplazable, Comparable<Segmento> {
 	private Punto punto2;
 
 	public Segmento(Punto punto1, Punto punto2) {
-		// q p1 y p2 no sean el mismo
-		if (!punto1.equals(punto2)) {
-			this.punto1 = punto1;
-			this.punto2 = punto2;
-		} else {
-			throw new Error("Ambos puntos son iguales");
+		if (punto1.equals(punto2)) {
+			throw new InvalidSegmentoException("PUNTOS INVALIDOS: Los dos puntos son iguales");
 		}
+		this.punto1 = punto1;
+		this.punto2 = punto2;
 	}
 
 	public Double calcularLongitud() {
@@ -21,7 +19,6 @@ public class Segmento implements Desplazable, Comparable<Segmento> {
 
 	public Double calcularPendiente() {
 		double divisor = punto2.getX() - punto1.getX();
-
 		return (divisor != 0) ? ((punto2.getY() - punto1.getY()) / divisor) : (0); // Recta paralela al eje Y
 	}
 
@@ -50,13 +47,13 @@ public class Segmento implements Desplazable, Comparable<Segmento> {
 	}
 
 	@Override
-	public String toString() {
-		return "[punto1=" + punto1 + ", punto2=" + punto2 + "]";
+	public int compareTo(Segmento o) {
+		return this.calcularLongitud().compareTo(o.calcularLongitud());
 	}
 
 	@Override
-	public int compareTo(Segmento o) {
-		return this.calcularLongitud().compareTo(o.calcularLongitud());
+	public String toString() {
+		return "SEGMENTO," + punto1 + "," + punto2;
 	}
 
 }
