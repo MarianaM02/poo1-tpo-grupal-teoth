@@ -9,8 +9,9 @@ public abstract class Figura implements Desplazable, Comparable<Figura>{
 	 */
 	@Override
 	public int compareTo(Figura f) {
-		return this.calcularArea().compareTo(f.calcularArea());
+		return -this.calcularArea().compareTo(f.calcularArea());
 	}
+	
 	
 	
 }

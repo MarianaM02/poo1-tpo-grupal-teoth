@@ -1,6 +1,7 @@
 package ar.edu.uno.geometria;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class App {
@@ -19,9 +20,13 @@ public class App {
 		figuras.add(rec);
 		figuras.add(cua);
 		
+		Collections.sort(figuras);
 		for (Figura f : figuras) {
 			System.out.println(f);
+			System.out.println(f.calcularArea());
 		}
 		System.out.println(seg);
+
+		
 	}
 }
