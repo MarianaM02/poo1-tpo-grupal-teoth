@@ -1,47 +1,63 @@
 package ar.edu.uno.geometria;
 
-public class Rectangulo extends Figura{
-	private Punto esqInfIzq;
-	private Punto esqSupDer;
-	
-	public Rectangulo(Punto esqInfIzq, Punto esqSupDer) {
+public class Rectangulo extends Figura {
+	private Punto esquina1;
+	private Punto esquina2;
+
+	public Rectangulo(Punto esquina1, Punto esquina2) throws Exception {
 		super();
-		this.esqInfIzq = esqInfIzq;
-		this.esqSupDer = esqSupDer;
+		if (esq1EstaAbajo(esquina1, esquina2)) {
+			this.esquina1 = esquina1;
+			this.esquina2 = esquina2;
+		} else {
+			this.esquina1 = esquina2;
+			this.esquina2 = esquina1;
+		}
+		if (esUnSegmento()) {
+			throw new Exception("RECTANGULO INVALIDO: Las esquinas forman una linea");
+		}
+	}
+
+	private boolean esUnSegmento() {
+		return calcularBase().equals(0.0) || calcularAltura().equals(0.0);
+	}
+
+	private boolean esq1EstaAbajo(Punto esquina1, Punto esquina2) {
+		return esquina1.getY() < esquina2.getY();
 	}
 
 	public Double calcularBase() {
-		Punto esqInfDer = new Punto(esqSupDer.getX(), esqInfIzq.getY());
-		Segmento base = new Segmento(esqInfIzq, esqInfDer);
-		
+		Punto esqInfDer = new Punto(esquina2.getX(), esquina1.getY());
+		Segmento base = new Segmento(esquina1, esqInfDer);
+
 		return base.calcularLongitud();
 	}
 
 	public Double calcularAltura() {
-		Punto esqSupIzq = new Punto(esqInfIzq.getX(), esqSupDer.getY());
-		Segmento altura = new Segmento(esqInfIzq, esqSupIzq);
-		
+		Punto esqSupIzq = new Punto(esquina1.getX(), esquina2.getY());
+		Segmento altura = new Segmento(esquina1, esqSupIzq);
+
 		return altura.calcularLongitud();
 	}
-	
+
 	public Punto getEsqInfIzq() {
-		return esqInfIzq;
+		return esquina1;
 	}
 
 	public Punto getEsqSupDer() {
-		return esqSupDer;
+		return esquina2;
 	}
 
 	@Override
 	public void desplazarEnX(Double distancia) {
-		esqInfIzq.desplazarEnX(distancia);
-		esqSupDer.desplazarEnX(distancia);
+		esquina1.desplazarEnX(distancia);
+		esquina2.desplazarEnX(distancia);
 	}
 
 	@Override
 	public void desplazarEnY(Double distancia) {
-		esqInfIzq.desplazarEnY(distancia);
-		esqSupDer.desplazarEnY(distancia);
+		esquina1.desplazarEnY(distancia);
+		esquina2.desplazarEnY(distancia);
 	}
 
 	@Override
@@ -56,7 +72,7 @@ public class Rectangulo extends Figura{
 
 	@Override
 	public String toString() {
-		return "RECTANGULO," + esqInfIzq + "," + esqSupDer;
+		return "RECTANGULO," + esquina1 + "," + esquina2;
 	}
 
 }

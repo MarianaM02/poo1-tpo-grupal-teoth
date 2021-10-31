@@ -1,32 +1,25 @@
 package ar.edu.uno.geometria;
 
-import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.util.Collections;
-import java.util.List;
+import java.util.LinkedList;
+
+import java.util.Map;
 
 public class App {
-	public static void main(String[] args) {
-		List<Figura> figuras = new ArrayList<Figura>();
-		Triangulo tri = new Triangulo(new Punto(2.0,1.0), new Punto(5.0,2.0), new Punto(7.0,4.0));
-		Circulo cir = new Circulo(5.0, new Punto(2.0,1.0));
-		Elipse eli = new Elipse(5.0, 3.0, new Punto(2.0,1.0));
-		Rectangulo rec = new Rectangulo(new Punto(2.0,1.0), new Punto(7.0,7.0));
-		Cuadrado cua = new Cuadrado(6.0, new Punto(2.0,1.0));
-		Segmento seg = new Segmento(new Punto(2.0,1.0), new Punto(8.0,9.0));
+	public static void main(String[] args) throws FileNotFoundException {
 		
-		figuras.add(tri);
-		figuras.add(cir);
-		figuras.add(eli);
-		figuras.add(rec);
-		figuras.add(cua);
+		LectorArchivos lector = new LectorArchivos();
 		
-		Collections.sort(figuras);
-		for (Figura f : figuras) {
-			System.out.println(f);
-			System.out.println(f.calcularArea());
+		lector.setListas("./arch/input.csv");
+		
+		for (Map.Entry<String, LinkedList<Figura>> m : lector.getFiguras().entrySet()) {
+			Collections.sort(m.getValue());
+			System.out.println(m.getKey());
+			for (Figura f : m.getValue()) {
+				System.out.println(f.calcularArea());
+			}
 		}
-		System.out.println(seg);
-
 		
 	}
 }
