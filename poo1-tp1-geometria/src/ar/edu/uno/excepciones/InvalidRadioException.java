@@ -1,4 +1,4 @@
-package ar.edu.uno.geometria;
+package ar.edu.uno.excepciones;
 
 /***
  * InvalidRadioException se lanza cuando un Circulo reciben un radio igual a 0 o

@@ -1,10 +1,12 @@
 package ar.edu.uno.geometria;
 
+import ar.edu.uno.excepciones.InvalidRectanguloException;
+
 public class Rectangulo extends Figura {
 	private Punto esquina1;
 	private Punto esquina2;
 
-	public Rectangulo(Punto esquina1, Punto esquina2) throws Exception {
+	public Rectangulo(Punto esquina1, Punto esquina2) throws InvalidRectanguloException {
 		super();
 		if (esq1EstaAbajo(esquina1, esquina2)) {
 			this.esquina1 = esquina1;
@@ -14,12 +16,13 @@ public class Rectangulo extends Figura {
 			this.esquina2 = esquina1;
 		}
 		if (esUnSegmento()) {
-			throw new Exception("RECTANGULO INVALIDO: Las esquinas forman una linea");
+			throw new InvalidRectanguloException("RECTANGULO INVALIDO: Las esquinas forman una linea");
 		}
 	}
 
 	private boolean esUnSegmento() {
-		return calcularBase().equals(0.0) || calcularAltura().equals(0.0);
+		return this.esquina1.getX().equals(this.esquina2.getX()) 
+				|| this.esquina1.getY().equals(this.esquina2.getY());
 	}
 
 	private boolean esq1EstaAbajo(Punto esquina1, Punto esquina2) {
@@ -40,11 +43,11 @@ public class Rectangulo extends Figura {
 		return altura.calcularLongitud();
 	}
 
-	public Punto getEsqInfIzq() {
+	public Punto getEsquina1() {
 		return esquina1;
 	}
 
-	public Punto getEsqSupDer() {
+	public Punto getEsquina2() {
 		return esquina2;
 	}
 

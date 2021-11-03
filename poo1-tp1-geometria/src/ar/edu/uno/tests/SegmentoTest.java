@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.uno.geometria.InvalidSegmentoException;
+import ar.edu.uno.excepciones.InvalidSegmentoException;
 import ar.edu.uno.geometria.Punto;
 import ar.edu.uno.geometria.Segmento;
 
@@ -43,11 +43,14 @@ public class SegmentoTest {
 		
 	}
 	
+	// Corregir orden de parametros de equals
+	
 	@Test
 	public void calcularPendienteTest() {
 		assertEquals(-0.5, seg3.calcularPendiente(), 0.0000001);
 		assertEquals(0.0, seg4.calcularPendiente(), 0.0000001);
-		//assertEquals(seg3.calcularPendiente(), Double.POSITIVE_INFINITY);
+		Double esperado = Double.POSITIVE_INFINITY;
+		assertEquals(esperado, seg5.calcularPendiente());
 	}
 	
 	@Test
@@ -79,25 +82,19 @@ public class SegmentoTest {
 	}
 	
 	@Test
-	public void compareToEqualsHashTest() {
+	public void compareToTest() {
 		assertTrue(seg1.compareTo(seg2) == -1);
 		assertTrue(seg1.compareTo(seg1) == 0);
 		assertTrue(seg3.compareTo(seg2) == 1);
 		
-		
-		seg5 = new Segmento(new Punto(-6.0, -2.0), new Punto(2.0, 3.0));
-		assertTrue(seg1.equals(seg1));
-		assertFalse(seg1.equals(null));
-		assertFalse(seg1.equals(new Punto(-6.0, -2.0)));
-		assertTrue(seg1.equals(seg5));
-		
-		System.out.println(seg1.hashCode());
-		
 	}
 	
 	@Test
-	public void mostrarSegmentoTest() {
-		System.out.println(seg1);
+	public void mostrarToString() {
+		String esperado = "SEGMENTO,-6.0,-2.0,2.0,3.0";
+		String obtenido = seg1.toString();
+		
+		assertEquals(esperado, obtenido);
 	}
 	
 }

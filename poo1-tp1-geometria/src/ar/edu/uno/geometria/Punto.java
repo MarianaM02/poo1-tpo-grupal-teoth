@@ -13,11 +13,11 @@ public class Punto implements Desplazable{
 	}
 
 	public boolean estaSobreEjeY() {
-		return x.compareTo(0.0) == 0;
+		return x.equals(0.0);
 	}
 
 	public boolean estaSobreEjeX() {
-		return y.compareTo(0.0) == 0;
+		return y.equals(0.0);
 	}
 
 	public boolean esCoordenadaOrigen() {

@@ -1,4 +1,4 @@
-package ar.edu.uno.geometria;
+package ar.edu.uno.excepciones;
 
 /***
  * InvalidSegmentoException se lanza cuando los extremos del segmento 

@@ -1,4 +1,6 @@
-package ar.edu.uno.geometria;
+package ar.edu.uno.excepciones;
+
+import ar.edu.uno.geometria.Rectangulo;
 
 /***
  * InvalidCuadradoException se lanza cuando un Cuadrado tienen algun lado igual

@@ -3,6 +3,8 @@ package ar.edu.uno.tests;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import ar.edu.uno.excepciones.InvalidRectanguloException;
 import ar.edu.uno.geometria.*;
 
 public class TestRectangulo {
@@ -14,13 +16,19 @@ public class TestRectangulo {
 	public void setUp() throws Exception {
 		rectanguloUno = new Rectangulo(new Punto(10.0, 10.0), new Punto(2.0, 6.0));
 		rectanguloDos = new Rectangulo(new Punto(2.0, 5.0), new Punto(8.0, 4.0));
-		rectanguloTres = new Rectangulo(new Punto(3.0, 6.0), new Punto(10.0, 4.0));
+		rectanguloTres = new Rectangulo(new Punto(10.0, 4.0), new Punto(3.0, 6.0));
 	}
 
 	@Test
 	public void testCreacionRectangulo() {
 		assertNotNull(rectanguloUno);
 		assertNotNull(rectanguloDos);
+		assertNotNull(rectanguloTres);
+	}
+	
+	@Test (expected = InvalidRectanguloException.class)
+	public void testRectanguloInvalido() {
+		rectanguloUno = new Rectangulo(new Punto(10.0, 4.0), new Punto(10.0, 6.0));
 	}
 
 	@Test
@@ -39,13 +47,14 @@ public class TestRectangulo {
 
 	@Test
 	public void testDesplazarRectangulo() {
-		assertEquals(rectanguloUno.getEsqInfIzq(), new Punto(10.0, 10.0));
-		assertEquals(rectanguloDos.getEsqInfIzq(), new Punto(2.0, 5.0));
-		assertEquals(rectanguloTres.getEsqInfIzq(), new Punto(3.0, 6.0));
 
-		assertEquals(rectanguloUno.getEsqSupDer(), new Punto(2.0, 6.0));
-		assertEquals(rectanguloDos.getEsqSupDer(), new Punto(8.0, 4.0));
-		assertEquals(rectanguloTres.getEsqSupDer(), new Punto(10.0, 4.0));
+		assertEquals(rectanguloUno.getEsquina1(), new Punto(2.0, 6.0));
+		assertEquals(rectanguloDos.getEsquina1(), new Punto(8.0, 4.0));
+		assertEquals(rectanguloTres.getEsquina1(), new Punto(10.0, 4.0));
+
+		assertEquals(rectanguloUno.getEsquina2(), new Punto(10.0, 10.0));
+		assertEquals(rectanguloDos.getEsquina2(), new Punto(2.0, 5.0));
+		assertEquals(rectanguloTres.getEsquina2(), new Punto(3.0, 6.0));
 
 		rectanguloUno.desplazarEnX(2.0);
 		rectanguloDos.desplazarEnX(3.0);
@@ -55,13 +64,14 @@ public class TestRectangulo {
 		rectanguloDos.desplazarEnY(-3.0);
 		rectanguloTres.desplazarEnY(1.0);
 
-		assertEquals(rectanguloUno.getEsqInfIzq(), new Punto(12.0, 15.0));
-		assertEquals(rectanguloDos.getEsqInfIzq(), new Punto(5.0, 2.0));
-		assertEquals(rectanguloTres.getEsqInfIzq(), new Punto(-1.0, 7.0));
+		assertEquals(rectanguloUno.getEsquina1(), new Punto(4.0, 11.0));
+		assertEquals(rectanguloDos.getEsquina1(), new Punto(11.0, 1.0));
+		assertEquals(rectanguloTres.getEsquina1(), new Punto(6.0, 5.0));
 
-		assertEquals(rectanguloUno.getEsqSupDer(), new Punto(4.0, 11.0));
-		assertEquals(rectanguloDos.getEsqSupDer(), new Punto(11.0, 1.0));
-		assertEquals(rectanguloTres.getEsqSupDer(), new Punto(6.0, 5.0));
+		assertEquals(rectanguloUno.getEsquina2(), new Punto(12.0, 15.0));
+		assertEquals(rectanguloDos.getEsquina2(), new Punto(5.0, 2.0));
+		assertEquals(rectanguloTres.getEsquina2(), new Punto(-1.0, 7.0));
+
 	}
 
 	@Test
@@ -79,7 +89,8 @@ public class TestRectangulo {
 	}
 
 	@Test
-	public void CompararAreas() {
+	public void compararAreas() {
+		
 		assertTrue(rectanguloUno.compareTo(rectanguloUno) == 0);
 		assertTrue(rectanguloDos.compareTo(rectanguloDos) == 0);
 		assertTrue(rectanguloTres.compareTo(rectanguloTres) == 0);
@@ -88,5 +99,13 @@ public class TestRectangulo {
 		assertTrue(rectanguloUno.compareTo(rectanguloTres) < 0);
 		assertTrue(rectanguloDos.compareTo(rectanguloTres) > 0);
 
+	}
+	
+	@Test
+	public void mostrarToString() {
+		String esperado = "RECTANGULO,8.0,4.0,2.0,5.0";
+		String obtenido = rectanguloDos.toString();
+		
+		assertEquals(esperado, obtenido);
 	}
 }

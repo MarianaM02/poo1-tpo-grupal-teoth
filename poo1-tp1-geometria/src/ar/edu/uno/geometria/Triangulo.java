@@ -1,22 +1,23 @@
 package ar.edu.uno.geometria;
 
+import ar.edu.uno.excepciones.InvalidTrianguloException;
+
 public class Triangulo extends Figura {
 
 	private Punto verticeUno;
 	private Punto verticeDos;
 	private Punto verticeTres;
 
-	public Triangulo(Punto verticeUno, Punto verticeDos, Punto verticeTres) throws Exception {
-		if (esTrianguloInvalido(verticeUno, verticeDos, verticeTres)) {
-			throw new Exception("TRIANGULO INVALIDO: Hay vertices que coinciden o es una linea");
-		} else {
-			this.verticeUno = verticeUno;
-			this.verticeDos = verticeDos;
-			this.verticeTres = verticeTres;			
+	public Triangulo(Punto verticeUno, Punto verticeDos, Punto verticeTres) throws InvalidTrianguloException {
+		this.verticeUno = verticeUno;
+		this.verticeDos = verticeDos;
+		this.verticeTres = verticeTres;			
+		if (esTrianguloInvalido()) {
+			throw new InvalidTrianguloException("TRIANGULO INVALIDO: Hay vertices que coinciden o es una linea");
 		}
 	}
 	
-	private boolean esTrianguloInvalido(Punto verticeUno, Punto verticeDos, Punto verticeTres) {
+	private boolean esTrianguloInvalido() {
 		boolean formanUnaLinea = 
 				(verticeUno.getX().equals(verticeDos.getX()) && verticeDos.getX().equals(verticeTres.getX())) 
 				|| (verticeUno.getY().equals(verticeDos.getY()) && verticeDos.getY().equals(verticeTres.getY()));
@@ -28,6 +29,16 @@ public class Triangulo extends Figura {
 	public Double obtenerLongLado(Punto p1, Punto p2) {
 		Segmento aux = new Segmento(p1, p2);
 		return aux.calcularLongitud();
+	}
+	
+	public boolean esParaleloAUnEje() {
+		Segmento seg1 = new Segmento(verticeUno, verticeDos);
+		Segmento seg2 = new Segmento(verticeDos, verticeTres);
+		Segmento seg3 = new Segmento(verticeTres, verticeUno);
+		
+		return seg1.esParaleloX() || seg1.esParaleloY() 
+				|| seg2.esParaleloX() || seg2.esParaleloY()
+				|| seg3.esParaleloX() || seg3.esParaleloY();
 	}
 
 	public Punto getVerticeUno() {

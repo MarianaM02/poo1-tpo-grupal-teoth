@@ -5,7 +5,7 @@ public abstract class Figura implements Desplazable, Comparable<Figura>{
 	public abstract Double calcularPerimetro();
 	
 	/**
-	 * post: Compara por area.
+	 * post: Compara por area de mayor a menor.
 	 */
 	@Override
 	public int compareTo(Figura f) {

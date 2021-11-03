@@ -1,11 +1,13 @@
 package ar.edu.uno.geometria;
 
+import ar.edu.uno.excepciones.InvalidRadioException;
+
 public class Elipse extends Figura {
 	private Punto centro;
 	private Double radioMayor;
 	private Double radioMenor;
 
-	public Elipse(Double radio1, Double radio2, Punto centro) {
+	public Elipse(Double radio1, Double radio2, Punto centro) throws InvalidRadioException{
 		if (radio1 <= 0 || radio2 <= 0) {
 			throw new InvalidRadioException("RADIO INVALIDO: Radios menores o iguales a 0");
 		}
