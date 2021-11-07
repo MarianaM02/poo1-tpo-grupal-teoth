@@ -53,7 +53,7 @@ public class ManejadorDeArchivos {
 						Punto p1 = new Punto(Double.parseDouble(arrDatos[2]), Double.parseDouble(arrDatos[3]));
 						fig = new Circulo(radio, p1);
 					} else if (tipo.equalsIgnoreCase("ELIPSE")) {
-						key = "Elípses";
+						key = "Elipses";
 						Double radio1 = Double.parseDouble(arrDatos[1]);
 						Double radio2 = Double.parseDouble(arrDatos[2]);
 						Punto p1 = new Punto(Double.parseDouble(arrDatos[3]), Double.parseDouble(arrDatos[4]));

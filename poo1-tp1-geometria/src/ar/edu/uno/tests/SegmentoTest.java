@@ -83,6 +83,9 @@ public class SegmentoTest {
 	
 	@Test
 	public void compareToTest() {
+		System.out.println(seg1.calcularLongitud());
+		System.out.println(seg2.calcularLongitud());
+		System.out.println(seg3.calcularLongitud());
 		assertTrue(seg1.compareTo(seg2) == -1);
 		assertTrue(seg1.compareTo(seg1) == 0);
 		assertTrue(seg3.compareTo(seg2) == 1);

@@ -12,4 +12,6 @@ public abstract class Figura implements Desplazable, Comparable<Figura>{
 		return -this.calcularArea().compareTo(f.calcularArea());
 	}
 	
+	
+	
 }
