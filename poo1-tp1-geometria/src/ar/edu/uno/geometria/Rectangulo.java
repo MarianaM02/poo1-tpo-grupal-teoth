@@ -6,6 +6,15 @@ public class Rectangulo extends Figura {
 	private Punto esquina1;
 	private Punto esquina2;
 
+	/**
+	 * pre: Orden de las esquinas y que no formen una linea
+	 * 
+	 * post: Crea un Rectangulo
+	 * 
+	 * @param esquina1	Valor punto de la esquina 1
+	 * @param esquina2	Valor punto de la esquina 2
+	 * @throws InvalidRectanguloException
+	 */
 	public Rectangulo(Punto esquina1, Punto esquina2) throws InvalidRectanguloException {
 		super();
 		if (esq1EstaAbajo(esquina1, esquina2)) {

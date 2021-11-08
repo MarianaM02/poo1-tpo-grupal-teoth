@@ -6,7 +6,6 @@ package ar.edu.uno.excepciones;
  * base o no tiene altura.
  *
  */
-
 @SuppressWarnings("serial")
 public class InvalidRectanguloException extends RuntimeException {
 

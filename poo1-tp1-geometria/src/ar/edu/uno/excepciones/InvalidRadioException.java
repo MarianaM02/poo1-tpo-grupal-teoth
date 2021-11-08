@@ -1,6 +1,6 @@
 package ar.edu.uno.excepciones;
 
-/***
+/**
  * InvalidRadioException se lanza cuando un Circulo reciben un radio igual a 0 o
  * negativo. Lo que imposibilita representar la figura en el plano
  *

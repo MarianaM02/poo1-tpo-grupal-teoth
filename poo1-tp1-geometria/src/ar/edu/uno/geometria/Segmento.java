@@ -7,6 +7,15 @@ public class Segmento implements Desplazable, Comparable<Segmento> {
 	private Punto punto1;
 	private Punto punto2;
 
+	/**
+	 * pre: Puntos no iguales
+	 * 
+	 * post: Crea un segmento
+	 * 
+	 * @param punto1 Valor punto de la primera coodenada
+	 * @param punto2 Valor punto de la segunda coodenada
+	 * @throws InvalidSegmentoException
+	 */
 	public Segmento(Punto punto1, Punto punto2) throws InvalidSegmentoException{
 		if (punto1.equals(punto2)) {
 			throw new InvalidSegmentoException("PUNTOS INVALIDOS: Los dos puntos son iguales");

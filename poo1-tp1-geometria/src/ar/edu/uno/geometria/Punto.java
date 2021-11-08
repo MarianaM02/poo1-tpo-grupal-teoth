@@ -2,11 +2,17 @@ package ar.edu.uno.geometria;
 
 import java.util.Objects;
 
-public class Punto implements Desplazable{
+public class Punto implements Desplazable {
 
 	private Double x;
 	private Double y;
 
+	/**
+	 * post: Crea un punto
+	 * 
+	 * @param x Valor Double de la coordenada en x
+	 * @param y Valor Double de la coordenada en y
+	 */
 	public Punto(Double x, Double y) {
 		this.x = x;
 		this.y = y;
@@ -45,7 +51,7 @@ public class Punto implements Desplazable{
 	public void setY(Double y) {
 		this.y = y;
 	}
-	
+
 	@Override
 	public void desplazarEnX(Double distancia) {
 		this.setX(this.getX() + distancia);
@@ -75,6 +81,6 @@ public class Punto implements Desplazable{
 
 	@Override
 	public String toString() {
-		return x + ","+ y;
+		return x + "," + y;
 	}
 }

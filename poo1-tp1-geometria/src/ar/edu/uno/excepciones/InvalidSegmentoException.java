@@ -6,7 +6,6 @@ package ar.edu.uno.excepciones;
  * dos segmentos sean paralelos provocara una division por cero. 
  *
  */
-
 @SuppressWarnings("serial")
 public class InvalidSegmentoException extends RuntimeException {
 

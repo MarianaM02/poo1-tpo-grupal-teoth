@@ -7,7 +7,17 @@ public class Elipse extends Figura {
 	private Double radioMayor;
 	private Double radioMenor;
 
-	public Elipse(Double radio1, Double radio2, Punto centro) throws InvalidRadioException{
+	/**
+	 * pre: Radios con valores positivos y orden de los radios ingresados
+	 * 
+	 * post: Crea un Elipse
+	 * 
+	 * @param radio1 Valor Double del radio 1 del elipse
+	 * @param radio2 Valor Double del radio 2 del elipse
+	 * @param centro Valor Punto del centro del elipse
+	 * @throws InvalidRadioException
+	 */
+	public Elipse(Double radio1, Double radio2, Punto centro) throws InvalidRadioException {
 		if (radio1 <= 0 || radio2 <= 0) {
 			throw new InvalidRadioException("RADIO INVALIDO: Radios menores o iguales a 0");
 		}
@@ -60,10 +70,10 @@ public class Elipse extends Figura {
 //		// aproximacion aproximada
 //		return Math.PI * (this.radioMayor + this.radioMenor);
 //	}
-	
+
 	@Override
 	public String toString() {
 		return "ELIPSE," + getRadioMayor() + "," + getRadioMenor() + "," + getCentro();
 	}
-	
+
 }

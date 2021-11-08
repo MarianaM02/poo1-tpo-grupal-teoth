@@ -43,8 +43,6 @@ public class SegmentoTest {
 		
 	}
 	
-	// Corregir orden de parametros de equals
-	
 	@Test
 	public void calcularPendienteTest() {
 		assertEquals(-0.5, seg3.calcularPendiente(), 0.0000001);
@@ -89,7 +87,6 @@ public class SegmentoTest {
 		assertTrue(seg1.compareTo(seg2) == -1);
 		assertTrue(seg1.compareTo(seg1) == 0);
 		assertTrue(seg3.compareTo(seg2) == 1);
-		
 	}
 	
 	@Test

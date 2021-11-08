@@ -16,15 +16,25 @@ public class ManejadorDeArchivos {
 	private TreeMap<String, LinkedList<Figura>> figuras = new TreeMap<String, LinkedList<Figura>>();
 	private LinkedList<Segmento> segmentos = new LinkedList<Segmento>();
 
-	public TreeMap<String, LinkedList<Figura>> getFiguras() {
-		return figuras;
+	/**
+	 * post: Constructor al que se le pasa una ruta del archivo con la lista de
+	 * figuras y segmentos a leer
+	 * 
+	 * @param ruta String con la ruta del archivo a leer
+	 * @throws FileNotFoundException
+	 */
+	public ManejadorDeArchivos(String ruta) throws FileNotFoundException {
+		this.setListas(ruta);
 	}
 
-	public LinkedList<Segmento> getSegmentos() {
-		return segmentos;
-	}
-
-	public void setListas(String ruta) throws FileNotFoundException {
+	/**
+	 * post: Setea los atributos figuras y segmentos segun el contenido de un
+	 * archivo y las ordena al finalizar la carga.
+	 * 
+	 * @param ruta String con la ruta del archivo a leer
+	 * @throws FileNotFoundException
+	 */
+	private void setListas(String ruta) throws FileNotFoundException {
 		File archivo = new File(ruta);
 		Scanner sc = new Scanner(archivo);
 		sc.useLocale(Locale.ENGLISH);
@@ -103,7 +113,23 @@ public class ManejadorDeArchivos {
 		Collections.sort(this.segmentos);
 	}
 
-	public void escribirListadoTodasLasFiguras() throws IOException {
+	/**
+	 * post: Crea y escribe los archivos de salida
+	 * 
+	 * @throws IOException
+	 */
+	public void escribirSalidas() throws IOException {
+		this.escribirListadoTodasLasFiguras();
+		this.escribirParalelos();
+		this.escribirGrandotes();
+	}
+
+	/**
+	 * post: Crea y escribe el archivo con el listado de todas las figuras
+	 * 
+	 * @throws IOException
+	 */
+	private void escribirListadoTodasLasFiguras() throws IOException {
 		// preparo el arch de salida
 		FileWriter archivo = new FileWriter("arch/figuras.out");
 		PrintWriter salida = new PrintWriter(archivo);
@@ -117,7 +143,13 @@ public class ManejadorDeArchivos {
 		salida.close();
 	}
 
-	public void escribirGrandotes() throws IOException {
+	/**
+	 * post: Crea y escribe el archivo con el listado de las figuras de mayor area y
+	 * los segmentos mas largos
+	 * 
+	 * @throws IOException
+	 */
+	private void escribirGrandotes() throws IOException {
 		// preparo el arch de salida
 		FileWriter archivo = new FileWriter("arch/grandotes.out");
 		PrintWriter salida = new PrintWriter(archivo);
@@ -166,7 +198,14 @@ public class ManejadorDeArchivos {
 		salida.close();
 	}
 
-	public void escribirParalelos() throws IOException {
+	/**
+	 * post: Crea y escribe el archivo con el listado de todos los triangulos y
+	 * segmentos que son paralelaos a uno de los ejes
+	 * 
+	 * @throws IOException
+	 */
+	private void escribirParalelos() throws IOException {
+
 		// preparo el arch de salida
 		FileWriter archivo = new FileWriter("arch/paralelos.out");
 		PrintWriter salida = new PrintWriter(archivo);
@@ -187,5 +226,13 @@ public class ManejadorDeArchivos {
 		}
 
 		salida.close();
+	}
+
+	public TreeMap<String, LinkedList<Figura>> getFiguras() {
+		return figuras;
+	}
+
+	public LinkedList<Segmento> getSegmentos() {
+		return segmentos;
 	}
 }

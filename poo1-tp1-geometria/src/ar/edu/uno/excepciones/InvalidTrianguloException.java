@@ -5,7 +5,6 @@ package ar.edu.uno.excepciones;
  * que coinciden o sus lados estan alineados.
  *
  */
-
 @SuppressWarnings("serial")
 public class InvalidTrianguloException extends RuntimeException {
 

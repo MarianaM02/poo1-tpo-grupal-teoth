@@ -10,7 +10,6 @@ import ar.edu.uno.geometria.Rectangulo;
  * @see Rectangulo
  *
  */
-
 @SuppressWarnings("serial")
 public class InvalidCuadradoException extends RuntimeException {
 
