@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Map;
@@ -160,9 +161,14 @@ public class ManejadorDeArchivos {
 		Double mayorLargo = 0.0;
 		Double areaFigura;
 		Double largoSegmento;
-
-		for (Map.Entry<String, LinkedList<Figura>> m : this.figuras.entrySet()) {
-			for (Figura f : m.getValue()) {
+		boolean seguir;
+		
+		Iterator<Map.Entry<String, LinkedList<Figura>>> itrSF = this.figuras.entrySet().iterator();
+		while (itrSF.hasNext()) {
+			Iterator<Figura> itrF = itrSF.next().getValue().iterator();
+			seguir = true;
+			while (itrF.hasNext() && seguir) {
+				Figura f = itrF.next();
 				areaFigura = f.calcularArea();
 				if (areaFigura > mayorArea) {
 					mayorArea = areaFigura;
@@ -171,12 +177,16 @@ public class ManejadorDeArchivos {
 				} else if (areaFigura.equals(mayorArea)) {
 					figurasMasGrandes.add(f);
 				} else {
-					continue;
+					seguir = false;
 				}
 			}
 		}
 
-		for (Segmento s : this.segmentos) {
+		seguir = true;
+
+		Iterator<Segmento> itrS = this.segmentos.iterator();
+		while (itrS.hasNext() && seguir) {
+			Segmento s = itrS.next();
 			largoSegmento = s.calcularLongitud();
 			if (largoSegmento > mayorLargo) {
 				mayorLargo = largoSegmento;
@@ -184,7 +194,7 @@ public class ManejadorDeArchivos {
 			} else if (largoSegmento.equals(mayorLargo)) {
 				segmentosMasLargos.add(s);
 			} else {
-				continue;
+				seguir = false;
 			}
 		}
 
